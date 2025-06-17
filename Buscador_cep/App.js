@@ -60,7 +60,6 @@ export default function App() {
           <Text style={styles.texto}>Estado: {dados.uf}</Text>
           <Text style={styles.texto}>DDD: {dados.ddd}</Text>
           <Text style={styles.texto}>IBGE: {dados.ibge}</Text>
-          <Text style={styles.texto}>GIA: {dados.gia}</Text>
           
         </View>
       )}
