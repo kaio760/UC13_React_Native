@@ -54,11 +54,14 @@ export default function App() {
 
       {dados && !dados.erro && (
         <View style={styles.resultado}>
-          <Text style={styles.texto}>Rua: {dados.logradouro}</Text>
+          <Text style={styles.texto}>Rua/Avenida: {dados.logradouro}</Text>
           <Text style={styles.texto}>Bairro: {dados.bairro}</Text>
           <Text style={styles.texto}>Cidade: {dados.localidade}</Text>
           <Text style={styles.texto}>Estado: {dados.uf}</Text>
           <Text style={styles.texto}>DDD: {dados.ddd}</Text>
+          <Text style={styles.texto}>IBGE: {dados.ibge}</Text>
+          <Text style={styles.texto}>GIA: {dados.gia}</Text>
+          
         </View>
       )}
     </View>
@@ -89,7 +92,6 @@ const styles = StyleSheet.create({
     elevation: 2,
     marginBottom: 40,
     fontFamily: "Arial",
-    textShadowColor: "#ccc",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
     fontStyle: "italic",
@@ -155,7 +157,10 @@ const styles = StyleSheet.create({
 
   texto:{
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 3,
     color: '#333',
+    fontSize: 13,
+    textTransform: 'capitalize',
+    letterSpacing: 0.1,
   }
 });
