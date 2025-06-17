@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import {View, Text, TextInput, TouchableOpacity, StyleSheet} from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import api from "./src";
 
 export default function App() {
@@ -11,10 +17,10 @@ export default function App() {
       alert("É necessário que o CEP tenha 8 dígitos.");
       return;
     }
-  
+
     try {
       const response = await api.get(`${cep}/json/`); // Axios já devolve JSON
-      setDados(response.data);                        // Usa response.data
+      setDados(response.data); // Usa response.data
     } catch (error) {
       console.error(error);
       alert("Erro ao buscar o CEP");
@@ -30,7 +36,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Buscador de CEP</Text>
-      <TextInput style={styles.input} placeholder="Digite o CEP" keyboardType="numeric" value={cep} onChangeText={setCep} />
+      <TextInput
+        style={styles.input}
+        placeholder="Digite o CEP"
+        keyboardType="numeric"
+        value={cep}
+        onChangeText={setCep}
+      />
 
       <TouchableOpacity style={styles.botao} onPress={buscarCep}>
         <Text style={styles.botaoTexto}>Buscar</Text>
@@ -42,10 +54,11 @@ export default function App() {
 
       {dados && !dados.erro && (
         <View style={styles.resultado}>
-          <Text>Rua: {dados.logradouro}</Text>
-          <Text>Bairro: {dados.bairro}</Text>
-          <Text>Cidade: {dados.localidade}</Text>
-          <Text>Estado: {dados.uf}</Text>
+          <Text style={styles.texto}>Rua: {dados.logradouro}</Text>
+          <Text style={styles.texto}>Bairro: {dados.bairro}</Text>
+          <Text style={styles.texto}>Cidade: {dados.localidade}</Text>
+          <Text style={styles.texto}>Estado: {dados.uf}</Text>
+          <Text style={styles.texto}>DDD: {dados.ddd}</Text>
         </View>
       )}
     </View>
@@ -67,6 +80,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: "#333",
     textAlign: "center",
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 2,
+    marginBottom: 40,
+    fontFamily: "Arial",
+    textShadowColor: "#ccc",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+    fontStyle: "italic",
+    textDecorationLine: "underline",
+    textDecorationColor: "#007BFF",
+    textDecorationStyle: "solid",
   },
 
   input: {
@@ -103,8 +132,30 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     color: "#fff",
     fontWeight: "bold",
+    fontSize: 16,
+    textTransform: "uppercase",
+    letterSpacing: 0.1,
   },
 
+  resultado:{
+    alignItems: 'center',
+    marginTop: 30,
+    backgroundColor: 'lightblue',
+    margin: 20,
+    padding: 16,
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 2,
+    width: '100%',
+    maxWidth: 400,
+  },
 
-
+  texto:{
+    fontWeight: 'bold',
+    marginBottom: 8,
+    color: '#333',
+  }
 });
